@@ -1,10 +1,14 @@
+// prisma/seed.ts
+
 import { PrismaClient } from '@prisma/client';
 
+// initialize Prisma Client
 const prisma = new PrismaClient();
 
 async function main() {
+  // create two dummy articles
   const post1 = await prisma.article.upsert({
-    where: { title: 'Prisma Adds Support for MongoDb' },
+    where: { title: 'Prisma Adds Support for MongoDB' },
     update: {},
     create: {
       title: 'Prisma Adds Support for MongoDB',

@@ -26,6 +26,18 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Migrate the DB
+
+```bash
+$ pnpm exec prisma migrate dev --name "init"
+```
+
+## Reset the DB
+
+```bash
+$ pnpm exec prisma migrate reset
+```
+
 ## Installation
 
 ```bash
