@@ -16,10 +16,13 @@ export class ArticlesService {
   }
 
   findOne(id: number) {
-    return this.prisma.article.findUnique({ where: { id } });
+    return this.prisma.article.findUnique({
+      where: { id },
+      include: { user: true },
+    });
   }
 
-  findDraft() {
+  findDrafts() {
     return this.prisma.article.findMany({ where: { published: false } });
   }
 
@@ -31,6 +34,6 @@ export class ArticlesService {
   }
 
   remove(id: number) {
-    this.prisma.article.delete({ where: { id } });
+    return this.prisma.article.delete({ where: { id } });
   }
 }
