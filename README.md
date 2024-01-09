@@ -26,6 +26,20 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Create the DB using the docker-compose.yml
+
+```bash
+
+docker compose -f "docker-compose.yml" up -d --build
+
+```
+
+## Installation
+
+```bash
+$ pnpm install
+```
+
 ## Migrate the DB
 
 ```bash
@@ -36,12 +50,6 @@ $ pnpm exec prisma migrate dev --name "init"
 
 ```bash
 $ pnpm exec prisma migrate reset
-```
-
-## Installation
-
-```bash
-$ pnpm install
 ```
 
 ## Running the app
