@@ -21,6 +21,9 @@ async function bootstrap() {
       type: 'http',
       description: 'JWT access token',
     })
+    .addServer('http://localhost:3000/', 'Local environment')
+    .addServer('https://staging.yourapi.com/', 'Staging')
+    .addServer('https://production.yourapi.com/', 'Production')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
