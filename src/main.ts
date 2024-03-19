@@ -13,9 +13,9 @@ async function bootstrap() {
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
   const config = new DocumentBuilder()
+    .setVersion('3.1.0')
     .setTitle('Median')
     .setDescription('The Median API description')
-    .setVersion('0.1')
     .addBearerAuth({
       bearerFormat: 'JWT',
       type: 'http',
