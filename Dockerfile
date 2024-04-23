@@ -1,6 +1,6 @@
 FROM node:21.7.1-alpine3.19 AS base
 RUN npm config set strict-ssl false
-RUN npm config set registry http://192.168.100.7:8081/repository/npm-group/
+RUN npm config set registry http://192.168.100.15:8081/repository/npm-group/
 RUN npm i -g pnpm
 
 FROM base AS dependencies
