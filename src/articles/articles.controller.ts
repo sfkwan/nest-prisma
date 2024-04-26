@@ -8,6 +8,7 @@ import {
   Delete,
   ParseIntPipe,
   NotFoundException,
+  Query,
 } from '@nestjs/common';
 import { ArticlesService } from './articles.service';
 import { CreateArticleDto } from './dto/create-article.dto';
@@ -16,9 +17,11 @@ import {
   ApiCreatedResponse,
   ApiOkResponse,
   ApiOperation,
+  ApiParam,
   ApiTags,
 } from '@nestjs/swagger';
 import { ArticleEntity } from './entities/article.entity';
+import { ArticleQuery } from './dto/article.query';
 
 @Controller('articles')
 @ApiTags('articles')
@@ -45,6 +48,7 @@ export class ArticlesController {
   }
 
   @Get()
+  @ApiOperation({ summary: 'Find all published articles' })
   @ApiOkResponse({ type: ArticleEntity, isArray: true })
   async findAll() {
     const articles = await this.articlesService.findAll();
@@ -53,11 +57,18 @@ export class ArticlesController {
 
   @Get(':id')
   @ApiOkResponse({ type: ArticleEntity })
-  async findOne(@Param('id', ParseIntPipe) id: number) {
+  @ApiParam({ name: 'id', description: 'Article id' })
+  async findOne(
+    @Param('id', ParseIntPipe) id: number,
+    @Query() articleQuery: ArticleQuery,
+  ) {
     const article = await this.articlesService.findOne(id);
     if (!article) {
       throw new NotFoundException(`Article with ${id} does not exist.`);
     }
+    console.log(typeof articleQuery.published === 'boolean');
+
+    console.log(`The queries: ${JSON.stringify(articleQuery)} `);
 
     return new ArticleEntity(article);
   }

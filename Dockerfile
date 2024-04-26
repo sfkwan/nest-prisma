@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY --chown=node:node package.json pnpm-lock.yaml ./
 RUN pnpm i
 
-FROM base as build
+FROM base AS build
 WORKDIR /usr/src/app
 COPY --chown=node:node . .
 COPY --chown=node:node --from=dependencies /usr/src/app/node_modules ./node_modules
